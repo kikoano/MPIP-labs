@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/movieDetailsLayout"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.zafir.lab_02.MovieDetailsActivity">
+
+
+        <TextView
+            android:id="@+id/titleMov"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Title"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/imgMov"
+            android:layout_width="250dp"
+            android:layout_height="300dp"
+            android:gravity="center"
+            android:src="@mipmap/ic_launcher" />
+        <TextView
+            android:id="@+id/plotMov"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Plot"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</ScrollView>
