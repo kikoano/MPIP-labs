@@ -33,7 +33,7 @@ public class GetMoviePlot extends IntentService {
         OmdbApi omdbApi = retrofit.create(OmdbApi.class);
         Map<String, String> map = new HashMap<>();
         map.put("i", intent.getStringExtra("id"));
-        map.put("plot", "long");
+        map.put("plot", "full");
         map.put("apikey", "94732e92");
         Call<JsonDataLong> call = omdbApi.getDataLong(map);
         call.enqueue(new Callback<JsonDataLong>() {
