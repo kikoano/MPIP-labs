@@ -22,6 +22,10 @@ public interface MovieDao {
 
     @Delete
     void delete(Movie movie);
-    @Query("SELECT * FROM Movie")
+
+    @Query("DELETE FROM Movie WHERE imdbID = :id")
+    void deleteById(String id);
+
+    @Query("SELECT * FROM Movie ORDER BY title")
     List<Movie> fetchAllData();
 }

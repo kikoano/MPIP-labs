@@ -23,14 +23,16 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    public static final String INTENT_MOVIE = "MOVIE";
+
 
     public class MyHolder extends RecyclerView.ViewHolder {
 
         TextView movieName;
         ImageView imagePoster;
         TextView movieYear;
+        String id;
 
-        public static final String EXTRA_MOVIE_TITLE = "movie title";
 
         // create constructor to get widget reference
         public MyHolder(View itemView) {
@@ -38,14 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             movieName = (TextView) itemView.findViewById(R.id.movieName);
             imagePoster = (ImageView) itemView.findViewById(R.id.moviePoster);
             movieYear = (TextView) itemView.findViewById(R.id.movieYear);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), MovieDetailsActivity.class);
-                    intent.putExtra(EXTRA_MOVIE_TITLE, movieName.getText().toString());
-                    v.getContext().startActivity(intent);
-                }
-            });
+
         }
 
     }
@@ -54,8 +49,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private LayoutInflater inflater;
     List<Movie> data = Collections.emptyList();
-    Movie current;
-    int currentPos = 0;
 
     // create constructor to innitilize context and data sent from MainActivity
     public MyAdapter(Context context, List<Movie> data) {
@@ -74,22 +67,41 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     // Bind data
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         // Get current position of item in recyclerview to bind data and assign values from list
         MyHolder myHolder = (MyHolder) holder;
-        Movie current = data.get(position);
-        myHolder.movieName.setText(current.title);
-        myHolder.movieYear.setText(current.year);
-        // load image into imageview using glide
+        final Movie current = data.get(position);
+        myHolder.movieName.setText(current.getTitle());
+        myHolder.movieYear.setText(current.getYear());
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.mipmap.ic_launcher);
         requestOptions.error(R.drawable.ic_launcher_background);
 
         Glide.with(context)
                 .setDefaultRequestOptions(requestOptions)
-                .load(current.poster)
+                .load(current.getPoster())
                 .into(myHolder.imagePoster);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MovieDetailsActivity.class);
+                intent.putExtra(INTENT_MOVIE, current);
+                v.getContext().startActivity(intent);
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                data.remove(position);
+
+                notifyDataSetChanged();
+                MoviesActivity.database.movieDao().deleteById(current.getImdbID());
+                return false;
+            }
+        });
 
     }
 

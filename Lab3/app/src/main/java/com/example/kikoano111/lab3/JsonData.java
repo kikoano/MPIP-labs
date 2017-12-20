@@ -14,7 +14,7 @@ public class JsonData {
 
     @SerializedName("Search")
     @Expose
-    private List<Search> search = null;
+    private List<Movie> search = null;
     @SerializedName("totalResults")
     @Expose
     private String totalResults;
@@ -22,11 +22,11 @@ public class JsonData {
     @Expose
     private String response;
 
-    public List<Search> getSearch() {
+    public List<Movie> getSearch() {
         return search;
     }
 
-    public void setSearch(List<Search> search) {
+    public void setSearch(List<Movie> search) {
         this.search = search;
     }
 

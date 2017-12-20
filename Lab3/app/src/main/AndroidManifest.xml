@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kikoano111.lab3">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,6 +21,7 @@
         </activity>
 
         <service android:name=".GetMovies"></service>
+        <service android:name=".GetMoviePlot"></service>
 
         <activity android:name=".MovieDetailsActivity"></activity>
     </application>

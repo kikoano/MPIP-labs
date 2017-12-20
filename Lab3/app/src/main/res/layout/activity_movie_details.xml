@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center"
         tools:context="com.zafir.lab_02.MovieDetailsActivity">
 
 
@@ -19,23 +20,36 @@
             android:id="@+id/titleMov"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+
             android:text="Title"
             android:textAlignment="center"
             android:textSize="20sp" />
+
         <ImageView
             android:id="@+id/imgMov"
             android:layout_width="250dp"
             android:layout_height="300dp"
-            android:gravity="center"
+
+
             android:src="@mipmap/ic_launcher" />
+        <TextView
+            android:id="@+id/yearMov"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Plot"
+
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/typeMov"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Plot"
+            android:textSize="15sp" />
         <TextView
             android:id="@+id/plotMov"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:text="Plot"
-            android:gravity="center"
-            android:textAlignment="center"
+            android:text=""
             android:textSize="15sp" />
 
     </LinearLayout>
